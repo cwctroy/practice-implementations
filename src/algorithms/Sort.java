@@ -1,7 +1,5 @@
 package algorithms;
 
-import java.util.Arrays;
-
 public class Sort {
 	
 	private static void swap(int[] array, int indexA, int indexB) {
@@ -77,9 +75,8 @@ public class Sort {
 		
 		//if array is size 1, exit
 		if (length < 2) {
-			return Arrays.copyOfRange(array, leftIndex, rightIndex + 1);
+			return new int[] {array[leftIndex]};
 		}
-		
 		
 		else {
 			
@@ -93,18 +90,20 @@ public class Sort {
 			//merge the two sorted sub-arrays
 			int leftCounter = 0;
 			int rightCounter = 0;
-			for (int i = leftIndex; i <= rightIndex; i++) {
+			for (int i = 0; i < length; i++) {
 				
 				//if either array is empty, place remainder of other array into sorted array
 				if (leftCounter == leftArray.length) {
-					for (int j = i; j < rightIndex; j++) {
+					for (int j = i; j < length; j++) {
 						sortedArray[j] = rightArray[rightCounter];
+						rightCounter++;
 					}
 					break;
 				}
 				else if (rightCounter == rightArray.length) {
-					for (int j = i; j < rightIndex; j++) {
+					for (int j = i; j < length; j++) {
 						sortedArray[j] = leftArray[leftCounter];
+						leftCounter++;
 					}
 					break;
 				}
